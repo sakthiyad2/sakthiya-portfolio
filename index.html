@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>Sakthiya Portfolio</title>
+
+<!-- CSS -->
+
+<link rel="stylesheet"
+href="style.css">
+
+<!-- FONT AWESOME -->
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+
+<!-- AOS -->
+
+<link
+href="https://unpkg.com/aos@2.3.4/dist/aos.css"
+rel="stylesheet">
+
+<!-- PARTICLES -->
+
+<script src="https://cdn.jsdelivr.net/npm/tsparticles@2/tsparticles.bundle.min.js"></script>
+
+</head>
+
+<body>
+
+<!-- LOADER -->
+
+<div id="loader">
+
+<div class="spinner"></div>
+
+</div>
+
+<!-- SCROLL PROGRESS -->
+
+<div id="progress-bar"></div>
+
+<!-- PARTICLES -->
+
+<div id="particles"></div>
+
+<!-- NAVBAR -->
+
+<nav class="navbar glass">
+
+<h2 class="logo">
+Sakthiya
+</h2>
+
+<ul class="nav-links">
+
+<li>
+<a href="#home">Home</a>
+</li>
+
+<li>
+<a href="#about">About</a>
+</li>
+
+<li>
+<a href="#skills">Skills</a>
+</li>
+
+<li>
+<a href="#projects">Projects</a>
+</li>
+
+<li>
+<a href="#certificates">Certificates</a>
+</li>
+
+<li>
+<a href="#stats">Stats</a>
+</li>
+
+<li>
+<a href="#contact">Contact</a>
+</li>
+
+</ul>
+
+<div class="nav-right">
+
+<button id="theme-toggle">
+
+<i class="fa-solid fa-moon"></i>
+
+</button>
+
+<div class="hamburger">
+
+<span></span>
+<span></span>
+<span></span>
+
+</div>
+
+</div>
+
+</nav>
+
+<!-- HERO -->
+
+<section id="home"
+class="hero">
+
+<!-- HERO GLOW -->
+
+<div class="hero-glow"></div>
+
+<h1 data-aos="fade-up">
+
+Hi, I'm <span>Sakthiya</span>
+
+</h1>
+
+<h2 id="typing"
+data-aos="fade-up"></h2>
+
+<p data-aos="fade-up">
+
+Frontend Developer & AI Student
+
+</p>
+
+<!-- HERO TAGS -->
+
+<div class="hero-tags"
+data-aos="fade-up">
+
+<span>AI Student</span>
+
+<span>Frontend Developer</span>
+
+<span>Java Developer </span>
+
+<span>Open to Internship</span>
+
+</div>
+
+<div class="hero-btns"
+data-aos="fade-up">
+
+<a href="#projects"
+class="btn">
+
+View Projects
+
+</a>
+
+<a href="resume.pdf"
+download
+class="btn">
+
+Download Resume
+
+</a>
+
+</div>
+
+</section>
+
+<!-- ABOUT -->
+
+<section id="about"
+class="section glass"
+data-aos="fade-right">
+
+<div class="about-container">
+
+<img src="profile.png"
+alt="profile">
+
+<div>
+
+<h2>
+About Me
+</h2>
+
+<p>
+
+I am pursuing B.Tech Artificial Intelligence
+& Data Science at Prince Dr. K. Vasudevan
+College of Engineering and Technology.
+
+I love frontend development,
+UI designing and AI projects.
+
+</p>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- SKILLS -->
+
+<section id="skills"
+class="section">
+
+<h2 data-aos="fade-up">
+
+Skills
+
+</h2>
+
+<div class="grid">
+
+<div class="skill glass"
+data-aos="zoom-in">
+
+<i class="fa-brands fa-html5"></i>
+
+<p>HTML</p>
+
+</div>
+
+<div class="skill glass"
+data-aos="zoom-in">
+
+<i class="fa-brands fa-css3-alt"></i>
+
+<p>CSS</p>
+
+</div>
+
+<div class="skill glass"
+data-aos="zoom-in">
+
+<i class="fa-brands fa-js"></i>
+
+<p>JavaScript</p>
+
+</div>
+
+<div class="skill glass"
+data-aos="zoom-in">
+
+<i class="fa-brands fa-python"></i>
+
+<p>Python</p>
+
+</div>
+
+<div class="skill glass"
+data-aos="zoom-in">
+
+<i class="fa-brands fa-java"></i>
+
+<p>Java</p>
+
+</div>
+
+<div class="skill glass"
+data-aos="zoom-in">
+
+<i class="fa-solid fa-pen-nib"></i>
+
+<p>UI/UX Design</p>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- PROJECTS -->
+
+<section id="projects"
+class="section">
+
+<h2 data-aos="fade-up">
+
+Projects
+
+</h2>
+
+<div id="categories"></div>
+
+<div id="project-container"></div>
+
+</section>
+
+<!-- CERTIFICATES -->
+
+<section id="certificates"
+class="section">
+
+<h2 data-aos="fade-up">
+
+Certificates
+
+</h2>
+
+<div id="certificate-container"
+class="grid"></div>
+
+<div class="show-btn-container">
+
+<button id="show-more-certificates"
+class="btn">
+
+Show All Certificates
+
+</button>
+
+</div>
+
+</section>
+
+<!-- STATS -->
+
+<section id="stats"
+class="section">
+
+<h2 data-aos="fade-up">
+
+My Achievements
+
+</h2>
+
+<div class="grid">
+
+<div class="skill glass"
+data-aos="zoom-in">
+
+<h1>30+</h1>
+
+<p>Certificates</p>
+
+</div>
+
+<div class="skill glass"
+data-aos="zoom-in">
+
+<h1>25+</h1>
+
+<p>Projects</p>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- CONTACT -->
+
+<section id="contact"
+class="section">
+
+<h2 data-aos="fade-up">
+
+Contact Me
+
+</h2>
+
+<div class="contact-container glass">
+
+<!-- LEFT -->
+
+<div>
+
+<h3>
+Let's Connect
+</h3>
+
+<p>
+
+Open for internships,
+freelance work and collaboration.
+
+</p>
+
+<a href="https://github.com/sakthiyad2"
+target="_blank">
+
+<i class="fa-brands fa-github"></i>
+
+GitHub
+
+</a>
+
+<br><br>
+
+<a href="https://www.linkedin.com/in/sakthiya-d-83a5b3386/"
+target="_blank">
+
+<i class="fa-brands fa-linkedin"></i>
+
+LinkedIn
+
+</a>
+
+<br><br>
+
+<a href="mailto:dsakthiya2@gmail.com">
+
+<i class="fa-solid fa-envelope"></i>
+
+dsakthiya2@gmail.com
+
+</a>
+
+</div>
+
+<!-- FORM -->
+
+<form
+action="https://formsubmit.co/dsakthiya2@gmail.com"
+method="POST">
+
+<input
+type="hidden"
+name="_captcha"
+value="false">
+
+<input
+type="hidden"
+name="_template"
+value="table">
+
+<input
+type="hidden"
+name="_subject"
+value="New Portfolio Message">
+
+<input
+type="text"
+name="name"
+placeholder="Your Name"
+required>
+
+<input
+type="email"
+name="email"
+placeholder="Your Email"
+required>
+
+<textarea
+name="message"
+placeholder="Your Message"
+required>
+</textarea>
+
+<button
+type="submit"
+class="btn">
+
+Send Message
+
+</button>
+
+</form>
+
+</div>
+
+</section>
+
+<!-- MODAL -->
+
+<div id="modal"
+class="modal glass">
+
+<span onclick="closeModal()">
+
+×
+
+</span>
+
+<div id="modal-content"></div>
+
+</div>
+
+<!-- BACK TO TOP -->
+
+<button id="topBtn">
+
+<i class="fa-solid fa-arrow-up"></i>
+
+</button>
+
+<!-- FOOTER -->
+
+<footer class="footer">
+
+<p>
+
+© 2026 Sakthiya |
+All Rights Reserved
+
+</p>
+
+</footer>
+
+<!-- AOS -->
+
+<script
+src="https://unpkg.com/aos@2.3.4/dist/aos.js">
+</script>
+
+<!-- JS -->
+
+<script src="script.js"></script>
+
+</body>
+
+</html>
