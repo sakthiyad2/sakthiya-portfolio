@@ -168,7 +168,7 @@ link:"https://github.com/sakthiyad2/Paws-and-Wings---Pet-Adoption-Website"
 title:"Portfolio Website",
 desc:"Personal developer portfolio",
 img:"portfolio.png",
-link:"#"
+link:"https://github.com/sakthiyad2/sakthiya-portfolio"
 }
 
 ],
