@@ -174,7 +174,7 @@ link:"https://github.com/sakthiyad2/sakthiya-portfolio"
 {
 title:"Village Milk Collection and Payment Register",
 desc:"Milk Collection and Payment Register",
-img:"milk.jpg",
+img:"milk.png",
 link:"https://github.com/sakthiyad2/Village-Milk-Collection-System"  
 }
 
