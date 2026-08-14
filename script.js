@@ -1,981 +1,1353 @@
-// ================= LOADER =================
+// =========================================================
+// SAKTHIYA PORTFOLIO - COMPLETE JAVASCRIPT
+// =========================================================
 
-window.onload = () => {
 
-document.getElementById("loader").style.display = "none";
+// =========================================================
+// LOADER
+// =========================================================
 
-};
+window.addEventListener("load", () => {
 
-// ================= AOS =================
+    const loader = document.getElementById("loader");
 
-AOS.init({
-duration:1000,
-once:true
+    if (loader) {
+        loader.style.display = "none";
+    }
+
 });
 
-// ================= THEME TOGGLE =================
 
-const toggle =
-document.getElementById("theme-toggle");
+// =========================================================
+// AOS
+// =========================================================
 
-if(localStorage.getItem("theme") === "dark"){
+if (typeof AOS !== "undefined") {
 
-document.body.classList.add("dark");
-
-toggle.innerHTML =
-'<i class="fa-solid fa-sun"></i>';
-
-}
-
-toggle.onclick = () => {
-
-document.body.classList.toggle("dark");
-
-if(document.body.classList.contains("dark")){
-
-localStorage.setItem("theme","dark");
-
-toggle.innerHTML =
-'<i class="fa-solid fa-sun"></i>';
-
-}else{
-
-localStorage.setItem("theme","light");
-
-toggle.innerHTML =
-'<i class="fa-solid fa-moon"></i>';
+    AOS.init({
+        duration: 1000,
+        once: true,
+        offset: 80
+    });
 
 }
 
-};
 
-// ================= TYPING EFFECT =================
+// =========================================================
+// THEME TOGGLE
+// =========================================================
+
+const toggle = document.getElementById("theme-toggle");
+
+
+// Load saved theme
+if (localStorage.getItem("theme") === "dark") {
+
+    document.body.classList.add("dark");
+
+    if (toggle) {
+        toggle.innerHTML =
+            '<i class="fa-solid fa-sun"></i>';
+    }
+
+} else {
+
+    document.body.classList.remove("dark");
+
+    if (toggle) {
+        toggle.innerHTML =
+            '<i class="fa-solid fa-moon"></i>';
+    }
+
+}
+
+
+// Toggle theme
+if (toggle) {
+
+    toggle.addEventListener("click", () => {
+
+        document.body.classList.toggle("dark");
+
+        if (document.body.classList.contains("dark")) {
+
+            localStorage.setItem("theme", "dark");
+
+            toggle.innerHTML =
+                '<i class="fa-solid fa-sun"></i>';
+
+        } else {
+
+            localStorage.setItem("theme", "light");
+
+            toggle.innerHTML =
+                '<i class="fa-solid fa-moon"></i>';
+
+        }
+
+    });
+
+}
+
+
+// =========================================================
+// HAMBURGER MENU
+// =========================================================
+
+const hamburger = document.querySelector(".hamburger");
+const nav = document.querySelector(".nav-links");
+
+
+// Open / close menu
+if (hamburger && nav) {
+
+    hamburger.addEventListener("click", (event) => {
+
+        event.stopPropagation();
+
+        nav.classList.toggle("active");
+
+        hamburger.classList.toggle("active");
+
+    });
+
+}
+
+
+// =========================================================
+// CLOSE MOBILE MENU WHEN NAV LINK IS CLICKED
+// =========================================================
+
+document.querySelectorAll(".nav-links a").forEach(link => {
+
+    link.addEventListener("click", () => {
+
+        if (nav) {
+            nav.classList.remove("active");
+        }
+
+        if (hamburger) {
+            hamburger.classList.remove("active");
+        }
+
+    });
+
+});
+
+
+// =========================================================
+// CLOSE MOBILE MENU WHEN CLICKING OUTSIDE
+// =========================================================
+
+document.addEventListener("click", (event) => {
+
+    if (!hamburger || !nav) return;
+
+    const clickedInsideMenu =
+        nav.contains(event.target);
+
+    const clickedHamburger =
+        hamburger.contains(event.target);
+
+    if (!clickedInsideMenu && !clickedHamburger) {
+
+        nav.classList.remove("active");
+
+        hamburger.classList.remove("active");
+
+    }
+
+});
+
+
+// =========================================================
+// CLOSE MENU WHEN SCREEN BECOMES DESKTOP
+// =========================================================
+
+window.addEventListener("resize", () => {
+
+    if (window.innerWidth > 768) {
+
+        if (nav) {
+            nav.classList.remove("active");
+        }
+
+        if (hamburger) {
+            hamburger.classList.remove("active");
+        }
+
+    }
+
+});
+
+
+// =========================================================
+// TYPING EFFECT
+// =========================================================
 
 const text = [
-"Frontend Developer",
-"AI Student",
-"UI Designer",
-"Java Developer"
+    "Frontend Developer",
+    "AI Student",
+    "UI Designer",
+    "Java Developer"
 ];
 
-let i = 0;
-let j = 0;
-let currentText = "";
+let textIndex = 0;
+let charIndex = 0;
 let isDeleting = false;
 
-function type(){
+const typingElement =
+    document.getElementById("typing");
 
-currentText = text[i];
 
-if(!isDeleting){
+function type() {
 
-document.getElementById("typing").innerHTML =
-currentText.substring(0,j++);
+    if (!typingElement) return;
 
-if(j > currentText.length){
+    const currentText =
+        text[textIndex];
 
-isDeleting = true;
+    if (!isDeleting) {
 
-setTimeout(type,1200);
+        typingElement.textContent =
+            currentText.substring(0, charIndex);
 
-return;
+        charIndex++;
 
-}
+        if (charIndex > currentText.length) {
 
-}else{
+            isDeleting = true;
 
-document.getElementById("typing").innerHTML =
-currentText.substring(0,j--);
+            setTimeout(type, 1200);
 
-if(j < 0){
+            return;
+        }
 
-isDeleting = false;
+    } else {
 
-i = (i + 1) % text.length;
+        typingElement.textContent =
+            currentText.substring(0, charIndex);
 
-}
+        charIndex--;
 
-}
+        if (charIndex < 0) {
 
-setTimeout(type,isDeleting ? 70 : 120);
+            isDeleting = false;
+
+            charIndex = 0;
+
+            textIndex =
+                (textIndex + 1) % text.length;
+
+        }
+
+    }
+
+    setTimeout(
+        type,
+        isDeleting ? 70 : 120
+    );
 
 }
 
 type();
 
-// ================= HAMBURGER MENU =================
 
-const hamburger =
-document.querySelector(".hamburger");
-
-const nav =
-document.querySelector(".nav-links");
-
-hamburger.onclick = () => {
-
-nav.classList.toggle("active");
-
-};
-
-// CLOSE MENU ON CLICK
-
-document.querySelectorAll(".nav-links a")
-.forEach(link => {
-
-link.onclick = () => {
-
-nav.classList.remove("active");
-
-};
-
-});
-
-// ================= PROJECT DATA =================
+// =========================================================
+// PROJECT DATA
+// =========================================================
 
 const projects = {
 
-web:[
+    web: [
 
-{
-title:"College Website",
-desc:"Modern responsive college website",
-img:"scet.png",
-link:"https://github.com/sakthiyad2/SCET-College-Website-"
-},
+        {
+            title: "College Website",
+            desc: "Modern responsive college website",
+            img: "scet.png",
+            link: "https://github.com/sakthiyad2/SCET-College-Website-"
+        },
 
-{
-title:"MindMirror",
-desc:"AI mental wellness web app",
-img:"mindmirror.png",
-link:"https://github.com/sakthiyad2/MindMirror-website"
-},
+        {
+            title: "MindMirror",
+            desc: "AI mental wellness web app",
+            img: "mindmirror.png",
+            link: "https://github.com/sakthiyad2/MindMirror-website"
+        },
 
-{
-title:"MR.Review",
-desc:"Movie review platform",
-img:"mrreview.png",
-link:"https://github.com/sakthiyad2/Movie-Review-website-MR.Review"
-},
+        {
+            title: "MR.Review",
+            desc: "Movie review platform",
+            img: "mrreview.png",
+            link: "https://github.com/sakthiyad2/Movie-Review-website-MR.Review"
+        },
 
-{
-title:"Paws and Wings",
-desc:"Pet adoption website",
-img:"pawsandwings.png",
-link:"https://github.com/sakthiyad2/Paws-and-Wings---Pet-Adoption-Website"
-},
+        {
+            title: "Paws and Wings",
+            desc: "Pet adoption website",
+            img: "pawsandwings.png",
+            link: "https://github.com/sakthiyad2/Paws-and-Wings---Pet-Adoption-Website"
+        },
 
-{
-title:"Portfolio Website",
-desc:"Personal developer portfolio",
-img:"portfolio.png",
-link:"https://github.com/sakthiyad2/sakthiya-portfolio"
-},
-  
-{
-title:"Village Milk Collection and Payment Register",
-desc:"Milk Collection and Payment Register",
-img:"milk.png",
-link:"https://github.com/sakthiyad2/Village-Milk-Collection-System"  
-}
+        {
+            title: "Portfolio Website",
+            desc: "Personal developer portfolio",
+            img: "portfolio.png",
+            link: "#"
+        },
 
-],
+        {
+            title: "Village Milk Collection System",
+            desc: "Web application for managing daily milk collection records using Node.js, Express.js and SQLite.",
+            img: "milk.png",
+            link: "https://github.com/sakthiyad2/Village-Milk-Collection-System"
+        }
 
-java:[
+    ],
 
-{
-title:"Bank Management System",
-desc:"Bank Account",
-img:"bank.jpg",
-link:"https://github.com/sakthiyad2/BankManagementSystem-java"
-},
 
-{
-title:"Library Management",
-desc:"Library record system",
-img:"library.png",
-link:"https://github.com/sakthiyad2/Library-Management-java-OOPS"
-},
+    java: [
 
-{
-title:"Student Management",
-desc:"Student database app",
-img:"studentm.png",
-link:"https://github.com/sakthiyad2/Student-Management-Java-OOPS"
-},
+        {
+            title: "Bank Management System",
+            desc: "Bank Account",
+            img: "bank.jpg",
+            link: "https://github.com/sakthiyad2/BankManagementSystem-java"
+        },
 
-{
-title:"Hospital Management",
-desc:"Hospital Management using Inheritance",
-img:"hospitalin.png",
-link:"https://github.com/sakthiyad2/Hospital-Management-inheritance-OOPS-Java"
-},
+        {
+            title: "Library Management",
+            desc: "Library record system",
+            img: "library.png",
+            link: "https://github.com/sakthiyad2/Library-Management-java-OOPS"
+        },
 
-{
-title:"Vehicle Hierarchy System",
-desc:"Vehicle Hierarchy",
-img:"vehiclehierarchy.png",
-link:"https://github.com/sakthiyad2/Vehicle-Hierarchy"
-},
+        {
+            title: "Student Management",
+            desc: "Student database app",
+            img: "studentm.png",
+            link: "https://github.com/sakthiyad2/Student-Management-Java-OOPS"
+        },
 
-{
-title:"Inventory System",
-desc:"Stock management",
-img:"inventory.png",
-link:"https://github.com/sakthiyad2/InventorySystem-java-"
-},
+        {
+            title: "Hospital Management",
+            desc: "Hospital Management using Inheritance",
+            img: "hospitalin.png",
+            link: "https://github.com/sakthiyad2/Hospital-Management-inheritance-OOPS-Java"
+        },
 
-{
-title:"Online Quiz",
-desc:"Quiz application",
-img:"quizjava.png",
-link:"https://github.com/sakthiyad2/QuizUi-java"
-},
+        {
+            title: "Vehicle Hierarchy System",
+            desc: "Vehicle Hierarchy",
+            img: "vehiclehierarchy.png",
+            link: "https://github.com/sakthiyad2/Vehicle-Hierarchy"
+        },
 
-{
-title:"Course Management",
-desc:"Course Management App",
-img:"course.png",
-link:"https://github.com/sakthiyad2/Course-Management-Java-OOPS"
-},
+        {
+            title: "Inventory System",
+            desc: "Stock management",
+            img: "inventory.png",
+            link: "https://github.com/sakthiyad2/InventorySystem-java-"
+        },
 
-{
-title:"Employee Payroll",
-desc:"Payroll calculation",
-img:"employee.png",
-link:"https://github.com/sakthiyad2/Employee-Payroll-Java-OOPS"
-},
+        {
+            title: "Online Quiz",
+            desc: "Quiz application",
+            img: "quizjava.png",
+            link: "https://github.com/sakthiyad2/QuizUi-java"
+        },
 
-{
-title:"Hospital Management",
-desc:"Hospital records",
-img:"hospital.png",
-link:"https://github.com/sakthiyad2/Hospital-Management-Java-OOPS"
-},
+        {
+            title: "Course Management",
+            desc: "Course Management App",
+            img: "course.png",
+            link: "https://github.com/sakthiyad2/Course-Management-Java-OOPS"
+        },
 
-{
-title:"Bank Account",
-desc:"Bank account system",
-img:"bankaccount.png",
-link:"https://github.com/sakthiyad2/Bank-Account-Java-OOPS"
-},
+        {
+            title: "Employee Payroll",
+            desc: "Payroll calculation",
+            img: "employee.png",
+            link: "https://github.com/sakthiyad2/Employee-Payroll-Java-OOPS"
+        },
 
-{
-title:"Food Ordering",
-desc:"Restaurant ordering app",
-img:"foodorder.png",
-link:"https://github.com/sakthiyad2/FoodOrderingSystem-java"
-},
+        {
+            title: "Hospital Management",
+            desc: "Hospital records",
+            img: "hospital.png",
+            link: "https://github.com/sakthiyad2/Hospital-Management-Java-OOPS"
+        },
 
-{
-title:"Food Delivery Payment",
-desc:"Food Delivery Payment",
-img:"fooddelivery.png",
-link:"https://github.com/sakthiyad2/FoodDeliveryPayment-java"
-},
+        {
+            title: "Bank Account",
+            desc: "Bank account system",
+            img: "bankaccount.png",
+            link: "https://github.com/sakthiyad2/Bank-Account-Java-OOPS"
+        },
 
-{
-title:"Vehicle Detail System",
-desc:"Vehicle Detail",
-img:"vehicledetail.png",
-link:"https://github.com/sakthiyad2/Vehicle-Details-System-using-Method-Overloading-Polymorphism-in-Java-"
-},
+        {
+            title: "Food Ordering",
+            desc: "Restaurant ordering app",
+            img: "foodorder.png",
+            link: "https://github.com/sakthiyad2/FoodOrderingSystem-java"
+        },
 
-{
-title:"Smart Home Automation",
-desc:"Smart Home System",
-img:"smarthome.png",
-link:"https://github.com/sakthiyad2/Smart-Home-Automation-System-using-Java-Interfaces-OOP-"
-},
+        {
+            title: "Food Delivery Payment",
+            desc: "Food Delivery Payment",
+            img: "fooddelivery.png",
+            link: "https://github.com/sakthiyad2/FoodDeliveryPayment-java"
+        },
 
-{
-title:"Vehicle Rental",
-desc:"Vehicle renting",
-img:"vehiclerent.png",
-link:"https://github.com/sakthiyad2/Vehicle-Rental-System-java"
-},
+        {
+            title: "Vehicle Detail System",
+            desc: "Vehicle Detail",
+            img: "vehicledetail.png",
+            link: "https://github.com/sakthiyad2/Vehicle-Details-System-using-Method-Overloading-Polymorphism-in-Java-"
+        },
 
-{
-title:"Movie Ticket Booking",
-desc:"Ticket Booking",
-img:"moviebooking.png",
-link:"https://github.com/sakthiyad2/MovieTicketBookingSystem-java"
-}
+        {
+            title: "Smart Home Automation",
+            desc: "Smart Home System",
+            img: "smarthome.png",
+            link: "https://github.com/sakthiyad2/Smart-Home-Automation-System-using-Java-Interfaces-OOP-"
+        },
 
-],
+        {
+            title: "Vehicle Rental",
+            desc: "Vehicle renting",
+            img: "vehiclerent.png",
+            link: "https://github.com/sakthiyad2/Vehicle-Rental-System-java"
+        },
 
-python:[
+        {
+            title: "Movie Ticket Booking",
+            desc: "Ticket Booking",
+            img: "moviebooking.png",
+            link: "https://github.com/sakthiyad2/MovieTicketBookingSystem-java"
+        }
 
-{
-title:"ATM",
-desc:"ATM System",
-img:"atm.png",
-link:"https://github.com/sakthiyad2/ATM-python"
-},
+    ],
 
-{
-title:"Data Processing",
-desc:"Expense Tracker",
-img:"data.png",
-link:"https://github.com/sakthiyad2/data_processing_project"
-},
 
-{
-title:"Dice Game",
-desc:"Game app",
-img:"dice.png",
-link:"https://github.com/sakthiyad2/Dice-game-python"
-},
+    python: [
 
-{
-title:"File Based Notes Saver",
-desc:"Notes Saver",
-img:"notes.png",
-link:"https://github.com/sakthiyad2/File-based-notes-saver"
-},
+        {
+            title: "ATM",
+            desc: "ATM System",
+            img: "atm.png",
+            link: "https://github.com/sakthiyad2/ATM-python"
+        },
 
-{
-title:"Hangman Game",
-desc:"Game App",
-img:"hangman.png",
-link:"https://github.com/sakthiyad2/Hangman"
-},
+        {
+            title: "Data Processing",
+            desc: "Expense Tracker",
+            img: "data.png",
+            link: "https://github.com/sakthiyad2/data_processing_project"
+        },
 
-{
-title:"Library Management System",
-desc:"Library Management",
-img:"lipy.png",
-link:"https://github.com/sakthiyad2/Library-Management-python"
-},
+        {
+            title: "Dice Game",
+            desc: "Game app",
+            img: "dice.png",
+            link: "https://github.com/sakthiyad2/Dice-game-python"
+        },
 
-{
-title:"Number Guessing Game",
-desc:"Game",
-img:"number.png",
-link:"https://github.com/sakthiyad2/Number-Guessing-Game-Python"
-},
+        {
+            title: "File Based Notes Saver",
+            desc: "Notes Saver",
+            img: "notes.png",
+            link: "https://github.com/sakthiyad2/File-based-notes-saver"
+        },
 
-{
-title:"Password Strength Checker",
-desc:"Password Checker",
-img:"password.png",
-link:"https://github.com/sakthiyad2/Password-Strength-Checker"
-},
+        {
+            title: "Hangman Game",
+            desc: "Game App",
+            img: "hangman.png",
+            link: "https://github.com/sakthiyad2/Hangman"
+        },
 
-{
-title:"Quiz",
-desc:"Quiz game",
-img:"quizpy.png",
-link:"https://github.com/sakthiyad2/Quiz-Python"
-},
+        {
+            title: "Library Management System",
+            desc: "Library Management",
+            img: "lipy.png",
+            link: "https://github.com/sakthiyad2/Library-Management-python"
+        },
 
-{
-title:"Rock Paper Scissor",
-desc:"Game",
-img:"rock.png",
-link:"https://github.com/sakthiyad2/Rock-Paper-Scissor-vs-Computer"
-}
+        {
+            title: "Number Guessing Game",
+            desc: "Game",
+            img: "number.png",
+            link: "https://github.com/sakthiyad2/Number-Guessing-Game-Python"
+        },
 
-]
+        {
+            title: "Password Strength Checker",
+            desc: "Password Checker",
+            img: "password.png",
+            link: "https://github.com/sakthiyad2/Password-Strength-Checker"
+        },
+
+        {
+            title: "Quiz",
+            desc: "Quiz game",
+            img: "quizpy.png",
+            link: "https://github.com/sakthiyad2/Quiz-Python"
+        },
+
+        {
+            title: "Rock Paper Scissor",
+            desc: "Game",
+            img: "rock.png",
+            link: "https://github.com/sakthiyad2/Rock-Paper-Scissor-vs-Computer"
+        }
+
+    ]
 
 };
 
-// ================= CATEGORY BUTTONS =================
+
+// =========================================================
+// CATEGORY BUTTONS
+// =========================================================
 
 const catDiv =
-document.getElementById("categories");
+    document.getElementById("categories");
 
-Object.keys(projects).forEach(cat => {
 
-let btn =
-document.createElement("button");
+if (catDiv) {
 
-btn.innerText = cat.toUpperCase();
+    Object.keys(projects).forEach(category => {
 
-btn.onclick = () => {
+        const button =
+            document.createElement("button");
 
-loadProjects(cat);
+        button.innerText =
+            category.toUpperCase();
 
-};
+        button.addEventListener("click", () => {
 
-catDiv.appendChild(btn);
+            loadProjects(category);
 
-});
+        });
 
-// ================= LOAD PROJECTS =================
+        catDiv.appendChild(button);
 
-function loadProjects(cat){
-
-const container =
-document.getElementById("project-container");
-
-container.innerHTML = "";
-
-projects[cat].forEach((p,index) => {
-
-let div =
-document.createElement("div");
-
-div.className = "project glass";
-
-div.setAttribute(
-"data-aos",
-"zoom-in-up"
-);
-
-div.setAttribute(
-"data-aos-delay",
-index * 100
-);
-
-div.innerHTML = `
-
-<img src="${p.img}" alt="${p.title}">
-
-<h3>${p.title}</h3>
-
-<p>${p.desc}</p>
-
-`;
-
-div.onclick = () => openModal(p);
-
-container.appendChild(div);
-
-});
-
-AOS.refresh();
+    });
 
 }
 
-// DEFAULT
 
+// =========================================================
+// LOAD PROJECTS
+// =========================================================
+
+function loadProjects(category) {
+
+    const container =
+        document.getElementById("project-container");
+
+    if (!container) return;
+
+    container.innerHTML = "";
+
+    projects[category].forEach((project, index) => {
+
+        const div =
+            document.createElement("div");
+
+        div.className =
+            "project glass";
+
+        div.setAttribute(
+            "data-aos",
+            "zoom-in-up"
+        );
+
+        div.setAttribute(
+            "data-aos-delay",
+            index * 100
+        );
+
+
+        div.innerHTML = `
+
+            <img
+                src="${project.img}"
+                alt="${project.title}"
+            >
+
+            <h3>
+                ${project.title}
+            </h3>
+
+            <p>
+                ${project.desc}
+            </p>
+
+        `;
+
+
+        div.addEventListener("click", () => {
+
+            openModal(project);
+
+        });
+
+
+        container.appendChild(div);
+
+    });
+
+
+    if (typeof AOS !== "undefined") {
+        AOS.refresh();
+    }
+
+}
+
+
+// Load default projects
 loadProjects("web");
 
-// ================= CERTIFICATES =================
+
+// =========================================================
+// CERTIFICATES
+// =========================================================
 
 const certificates = [
 
-{
-title:"Legacy responsive web design v8",
-img:"freecode legacy responsive web design v8.png"
-},
+    {
+        title: "Legacy responsive web design v8",
+        img: "freecode legacy responsive web design v8.png"
+    },
 
-{
-title:"Responsive Web Design",
-img:"Resposive web design.jpeg"
-},
+    {
+        title: "Responsive Web Design",
+        img: "Resposive web design.jpeg"
+    },
 
-{
-title:"Communication skill",
-img:"communication.jpg"
-},
+    {
+        title: "Communication skill",
+        img: "communication.jpg"
+    },
 
-{
-title:"JavaScript",
-img:"javascript.jpg"
-},
+    {
+        title: "JavaScript",
+        img: "javascript.jpg"
+    },
 
-{
-title:"Java",
-img:"javafundamentals.jpg"
-},
+    {
+        title: "Java",
+        img: "javafundamentals.jpg"
+    },
 
-{
-title:"UX",
-img:"ux.jpg"
-},
+    {
+        title: "UX",
+        img: "ux.jpg"
+    },
 
-{
-title:"Microsoft - Secure storage for Azure Files and Azure Blob Storage",
-img:"azureblob.jpg"
-},
+    {
+        title: "Microsoft - Secure storage for Azure Files and Azure Blob Storage",
+        img: "azureblob.jpg"
+    },
 
-{
-title:"Micrsoft - Create and manage canvas apps with power apps",
-img:"canva.jpg"
-},
+    {
+        title: "Microsoft - Create and manage canvas apps with power apps",
+        img: "canva.jpg"
+    },
 
-{
-title:"Basics of Python",
-img:"bpython.jpg"
-},
+    {
+        title: "Basics of Python",
+        img: "bpython.jpg"
+    },
 
-{
-title:"LPBO2-Automation with Arduino",
-img:"leap.jpg"
-},
+    {
+        title: "LPBO2-Automation with Arduino",
+        img: "leap.jpg"
+    },
 
-{
-title:"Critical Thinking in AI Era",
-img:"criticalthinking.jpg"
-},
+    {
+        title: "Critical Thinking in AI Era",
+        img: "criticalthinking.jpg"
+    },
 
-{
-title:"Claude Code in Action(Anthropic)",
-img:"claudecodeinaction.jpg"
-},
+    {
+        title: "Claude Code in Action (Anthropic)",
+        img: "claudecodeinaction.jpg"
+    },
 
-{
-title:"Claude 101(Anthropic)",
-img:"claude101.jpg"
-},
+    {
+        title: "Claude 101 (Anthropic)",
+        img: "claude101.jpg"
+    },
 
-{
-title:"AI Fluency: Framework & Foundations",
-img:"aifluencyframeworkandfoundations.jpg"
-},
+    {
+        title: "AI Fluency: Framework & Foundations",
+        img: "aifluencyframeworkandfoundations.jpg"
+    },
 
-{
-title:"Claude with the Anthropic API",
-img:"claudewiththeanthropic.jpg"
-},
+    {
+        title: "Claude with the Anthropic API",
+        img: "claudewiththeanthropic.jpg"
+    },
 
-{
-title:"Introduction to Model Context Protocol",
-img:"introductiontomodelcontextprotocol.jpg"
-},
+    {
+        title: "Introduction to Model Context Protocol",
+        img: "introductiontomodelcontextprotocol.jpg"
+    },
 
-{
-title:"AI Fluency for educators",
-img:"aifluencyforeducators.jpg"
-},
+    {
+        title: "AI Fluency for educators",
+        img: "aifluencyforeducators.jpg"
+    },
 
-{
-title:"Data Science and Analytics",
-img:"datascience.jpg"
-},
+    {
+        title: "Data Science and Analytics",
+        img: "datascience.jpg"
+    },
 
-{
-title:"AI Fluency for students",
-img:"aifluencyforstudents.jpg"
-},
+    {
+        title: "AI Fluency for students",
+        img: "aifluencyforstudents.jpg"
+    },
 
-{
-title:"Model Context Protocol: Advanced Topics",
-img:"modelcontextprotocoladvancedtopics.jpg"
-},
+    {
+        title: "Model Context Protocol: Advanced Topics",
+        img: "modelcontextprotocoladvancedtopics.jpg"
+    },
 
-{
-title:"Claude with Google Vertex AI",
-img:"claudewithgooglevertexai.jpg"
-},
+    {
+        title: "Claude with Google Vertex AI",
+        img: "claudewithgooglevertexai.jpg"
+    },
 
-{
-title:"Teaching the AI Fluency Framework",
-img:"teachingtheaifluencyframework.jpg"
-},
+    {
+        title: "Teaching the AI Fluency Framework",
+        img: "teachingtheaifluencyframework.jpg"
+    },
 
-{
-title:"AI Fluency for nonprofits",
-img:"aifluencyfornonprofits.jpg"
-},
+    {
+        title: "AI Fluency for nonprofits",
+        img: "aifluencyfornonprofits.jpg"
+    },
 
-{
-title:"Introduction to agent skills",
-img:"introductiontoagentskills.jpg"
-},
+    {
+        title: "Introduction to agent skills",
+        img: "introductiontoagentskills.jpg"
+    },
 
-{
-title:"Claude with Amazon Bedrock",
-img:"claudewithamazonbedrock.jpg"
-},
+    {
+        title: "Claude with Amazon Bedrock",
+        img: "claudewithamazonbedrock.jpg"
+    },
 
-{
-title:"Python Fundamentals",
-img:"pythonfundamentals.jpg"
-},
+    {
+        title: "Python Fundamentals",
+        img: "pythonfundamentals.jpg"
+    },
 
-{
-title:"Yuva AI for All",
-img:"yuvaai.jpg"
-},
+    {
+        title: "Yuva AI for All",
+        img: "yuvaai.jpg"
+    },
 
-{
-title:"Java Programming Fundamentals",
-img:"javaprogrammingfundamentals.jpg"
-},
+    {
+        title: "Java Programming Fundamentals",
+        img: "javaprogrammingfundamentals.jpg"
+    },
 
-{
-title:"Introduction to Claude Cowork",
-img:"introductiontoclaudecowork.jpg"
-},
+    {
+        title: "Introduction to Claude Cowork",
+        img: "introductiontoclaudecowork.jpg"
+    },
 
-{
-title:"Introduction to subagents",
-img:"introductiontosubagents.jpg"
-},
+    {
+        title: "Introduction to subagents",
+        img: "introductiontosubagents.jpg"
+    },
 
-{
-title:"Type Writing(Junior)",
-img:"type1.jpeg"
-},
+    {
+        title: "Type Writing (Junior)",
+        img: "type1.jpeg"
+    },
 
-{
-title:"Type Writing(Senior)",
-img:"type2.jpeg"
-},
+    {
+        title: "Type Writing (Senior)",
+        img: "type2.jpeg"
+    }
 
 ];
 
-// ================= CERTIFICATE LOAD =================
+
+// =========================================================
+// LOAD CERTIFICATES
+// =========================================================
 
 const certContainer =
-document.getElementById("certificate-container");
+    document.getElementById("certificate-container");
 
 const showBtn =
-document.getElementById("show-more-certificates");
+    document.getElementById("show-more-certificates");
 
-let visibleCertificates =
-window.innerWidth <= 768 ? 3 : 3;
+let visibleCertificates = 3;
 
-function loadCertificates(){
 
-certContainer.innerHTML = "";
+function loadCertificates() {
 
-certificates
-.slice(0,visibleCertificates)
-.forEach((cert,index) => {
+    if (!certContainer) return;
 
-let div =
-document.createElement("div");
+    certContainer.innerHTML = "";
 
-div.className = "cert glass";
+    certificates
+        .slice(0, visibleCertificates)
+        .forEach((certificate, index) => {
 
-div.setAttribute(
-"data-aos",
-"flip-left"
-);
+            const div =
+                document.createElement("div");
 
-div.setAttribute(
-"data-aos-delay",
-index * 80
-);
+            div.className =
+                "cert glass";
 
-div.innerHTML = `
+            div.setAttribute(
+                "data-aos",
+                "flip-left"
+            );
 
-<img src="${cert.img}" alt="${cert.title}">
+            div.setAttribute(
+                "data-aos-delay",
+                index * 80
+            );
 
-<h3>${cert.title}</h3>
 
-`;
+            div.innerHTML = `
 
-div.onclick = () =>
-openCert(cert.img);
+                <img
+                    src="${certificate.img}"
+                    alt="${certificate.title}"
+                >
 
-certContainer.appendChild(div);
+                <h3>
+                    ${certificate.title}
+                </h3>
 
-});
+            `;
 
-AOS.refresh();
 
-}
+            div.addEventListener("click", () => {
 
-// INITIAL
+                openCert(certificate.img);
 
-loadCertificates();
+            });
 
-// SHOW ALL
 
-showBtn.onclick = () => {
+            certContainer.appendChild(div);
 
-visibleCertificates =
-certificates.length;
+        });
 
-loadCertificates();
 
-showBtn.style.display = "none";
-
-};
-
-// ================= MODAL =================
-
-function openModal(p){
-
-document.getElementById("modal")
-.classList.add("active");
-
-document.getElementById("modal-content")
-.innerHTML = `
-
-<h2>${p.title}</h2>
-
-<br>
-
-<p>${p.desc}</p>
-
-<br><br>
-
-<a href="${p.link}"
-target="_blank"
-class="btn">
-
-Visit Project
-
-</a>
-
-`;
+    if (typeof AOS !== "undefined") {
+        AOS.refresh();
+    }
 
 }
 
+
+loadCertificates();
+
+
+// =========================================================
+// SHOW ALL CERTIFICATES
+// =========================================================
+
+if (showBtn) {
+
+    showBtn.addEventListener("click", () => {
+
+        visibleCertificates =
+            certificates.length;
+
+        loadCertificates();
+
+        showBtn.style.display =
+            "none";
+
+    });
+
+}
+
+
+// =========================================================
+// MODAL
+// =========================================================
+
+function openModal(project) {
+
+    const modal =
+        document.getElementById("modal");
+
+    const content =
+        document.getElementById("modal-content");
+
+    if (!modal || !content) return;
+
+
+    modal.classList.add("active");
+
+
+    content.innerHTML = `
+
+        <h2>
+            ${project.title}
+        </h2>
+
+        <br>
+
+        <p>
+            ${project.desc}
+        </p>
+
+        <br><br>
+
+        <a
+            href="${project.link}"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="btn"
+        >
+            Visit Project
+        </a>
+
+    `;
+
+}
+
+
+// =========================================================
 // CLOSE MODAL
+// =========================================================
 
-function closeModal(){
+function closeModal() {
 
-document.getElementById("modal")
-.classList.remove("active");
+    const modal =
+        document.getElementById("modal");
+
+    if (modal) {
+        modal.classList.remove("active");
+    }
 
 }
 
+
+// =========================================================
 // OPEN CERTIFICATE
+// =========================================================
 
-function openCert(src){
+function openCert(src) {
 
-document.getElementById("modal")
-.classList.add("active");
+    const modal =
+        document.getElementById("modal");
 
-document.getElementById("modal-content")
-.innerHTML = `
+    const content =
+        document.getElementById("modal-content");
 
-<img src="${src}" width="100%">
+    if (!modal || !content) return;
 
-`;
 
-}
+    modal.classList.add("active");
 
-// CLOSE MODAL WHEN CLICK OUTSIDE
 
-window.onclick = (e) => {
+    content.innerHTML = `
 
-const modal =
-document.getElementById("modal");
+        <img
+            src="${src}"
+            alt="Certificate"
+            style="
+                width:100%;
+                max-height:80vh;
+                object-fit:contain;
+                border-radius:15px;
+            "
+        >
 
-if(e.target === modal){
-
-modal.classList.remove("active");
-
-}
-
-};
-
-// ================= PARTICLES / NIGHT SKY =================
-
-tsParticles.load("particles",{
-
-fullScreen:{
-enable:false
-},
-
-background:{
-color:"transparent"
-},
-
-fpsLimit:60,
-
-particles:{
-
-number:{
-value:120,
-density:{
-enable:true,
-area:800
-}
-},
-
-color:{
-value:"#ffffff"
-},
-
-shape:{
-type:"circle"
-},
-
-opacity:{
-value:{min:0.2,max:0.9},
-animation:{
-enable:true,
-speed:0.5,
-minimumValue:0.1,
-sync:false
-}
-},
-
-size:{
-value:{min:1,max:4}
-},
-
-move:{
-enable:true,
-speed:0.3,
-direction:"none",
-random:true,
-straight:false,
-outModes:{
-default:"out"
-}
-},
-
-links:{
-enable:true,
-distance:140,
-color:"#ffffff",
-opacity:0.12,
-width:1
-}
-
-},
-
-interactivity:{
-
-events:{
-
-onHover:{
-enable:true,
-mode:"grab"
-},
-
-resize:true
-
-},
-
-modes:{
-
-grab:{
-distance:150,
-links:{
-opacity:0.35
-}
-}
+    `;
 
 }
 
-},
 
-detectRetina:true
+// =========================================================
+// CLOSE MODAL WHEN CLICKING OUTSIDE
+// =========================================================
+
+window.addEventListener("click", (event) => {
+
+    const modal =
+        document.getElementById("modal");
+
+    if (
+        modal &&
+        event.target === modal
+    ) {
+
+        modal.classList.remove("active");
+
+    }
 
 });
 
-// ================= SCROLL ANIMATION =================
 
-window.addEventListener("scroll",() => {
+// =========================================================
+// PARTICLES
+// =========================================================
 
-const navbar =
-document.querySelector(".navbar");
+if (typeof tsParticles !== "undefined") {
 
-if(window.scrollY > 50){
+    tsParticles.load("particles", {
 
-navbar.style.background =
-"rgba(15,23,42,0.7)";
+        fullScreen: {
+            enable: false
+        },
 
-navbar.style.boxShadow =
-"0 8px 25px rgba(0,0,0,0.3)";
+        background: {
+            color: "transparent"
+        },
 
-}else{
+        fpsLimit: 60,
 
-navbar.style.background =
-"rgba(255,255,255,0.1)";
+        particles: {
 
-navbar.style.boxShadow =
-"none";
+            number: {
+                value: 100,
+
+                density: {
+                    enable: true,
+                    area: 800
+                }
+            },
+
+            color: {
+                value: "#ffffff"
+            },
+
+            shape: {
+                type: "circle"
+            },
+
+            opacity: {
+
+                value: {
+                    min: 0.2,
+                    max: 0.8
+                },
+
+                animation: {
+
+                    enable: true,
+
+                    speed: 0.5,
+
+                    minimumValue: 0.1,
+
+                    sync: false
+
+                }
+
+            },
+
+            size: {
+
+                value: {
+                    min: 1,
+                    max: 4
+                }
+
+            },
+
+            move: {
+
+                enable: true,
+
+                speed: 0.3,
+
+                direction: "none",
+
+                random: true,
+
+                straight: false,
+
+                outModes: {
+                    default: "out"
+                }
+
+            },
+
+            links: {
+
+                enable: true,
+
+                distance: 140,
+
+                color: "#ffffff",
+
+                opacity: 0.12,
+
+                width: 1
+
+            }
+
+        },
+
+
+        interactivity: {
+
+            events: {
+
+                onHover: {
+
+                    enable: true,
+
+                    mode: "grab"
+
+                },
+
+                resize: true
+
+            },
+
+
+            modes: {
+
+                grab: {
+
+                    distance: 150,
+
+                    links: {
+
+                        opacity: 0.35
+
+                    }
+
+                }
+
+            }
+
+        },
+
+
+        detectRetina: true
+
+    });
 
 }
 
+
+// =========================================================
+// NAVBAR SCROLL EFFECT
+// =========================================================
+
+window.addEventListener("scroll", () => {
+
+    const navbar =
+        document.querySelector(".navbar");
+
+    if (!navbar) return;
+
+
+    // IMPORTANT:
+    // Do not force a dark background.
+    // CSS handles light/dark themes.
+
+    if (window.scrollY > 50) {
+
+        navbar.classList.add("scrolled");
+
+    } else {
+
+        navbar.classList.remove("scrolled");
+
+    }
+
 });
 
-// ================= HERO FLOAT EFFECT =================
+
+// =========================================================
+// HERO MOUSE FLOAT
+// =========================================================
 
 const hero =
-document.querySelector(".hero");
+    document.querySelector(".hero");
 
-window.addEventListener("mousemove",(e) => {
 
-const x =
-(e.clientX / window.innerWidth - 0.5) * 10;
+if (hero && window.innerWidth > 768) {
 
-const y =
-(e.clientY / window.innerHeight - 0.5) * 10;
+    window.addEventListener("mousemove", (event) => {
 
-hero.style.transform =
-`translate(${x}px, ${y}px)`;
+        const x =
+            (event.clientX /
+                window.innerWidth - 0.5) * 6;
+
+        const y =
+            (event.clientY /
+                window.innerHeight - 0.5) * 6;
+
+
+        hero.style.transform =
+            `translate(${x}px, ${y}px)`;
+
+    });
+
+}
+
+
+// Reset hero transform on mobile
+window.addEventListener("resize", () => {
+
+    if (
+        hero &&
+        window.innerWidth <= 768
+    ) {
+
+        hero.style.transform =
+            "translate(0,0)";
+
+    }
 
 });
+
+
+// =========================================================
+// ACTIVE NAVIGATION LINK
+// =========================================================
 
 const sections =
-document.querySelectorAll("section");
+    document.querySelectorAll("section");
 
 const navLinks =
-document.querySelectorAll(".nav-links a");
+    document.querySelectorAll(".nav-links a");
 
-window.addEventListener("scroll",()=>{
 
-let current = "";
+window.addEventListener("scroll", () => {
 
-sections.forEach(section=>{
+    let current = "";
 
-const sectionTop =
-section.offsetTop;
 
-if(pageYOffset >= sectionTop - 200){
+    sections.forEach(section => {
 
-current = section.getAttribute("id");
+        const sectionTop =
+            section.offsetTop;
 
-}
+        if (
+            window.scrollY >=
+            sectionTop - 200
+        ) {
+
+            current =
+                section.getAttribute("id");
+
+        }
+
+    });
+
+
+    navLinks.forEach(link => {
+
+        link.classList.remove(
+            "active-link"
+        );
+
+
+        if (
+            current &&
+            link.getAttribute("href") ===
+            `#${current}`
+        ) {
+
+            link.classList.add(
+                "active-link"
+            );
+
+        }
+
+    });
+
+});
+
+
+// =========================================================
+// SCROLL PROGRESS BAR
+// =========================================================
+
+window.addEventListener("scroll", () => {
+
+    const scrollTop =
+        document.documentElement.scrollTop;
+
+    const height =
+        document.documentElement.scrollHeight -
+        document.documentElement.clientHeight;
+
+
+    if (height <= 0) return;
+
+
+    const scrolled =
+        (scrollTop / height) * 100;
+
+
+    const progress =
+        document.getElementById("progress-bar");
+
+
+    if (progress) {
+
+        progress.style.width =
+            scrolled + "%";
+
+    }
 
 });
 
-navLinks.forEach(link=>{
 
-link.classList.remove("active-link");
-
-if(link.href.includes(current)){
-
-link.classList.add("active-link");
-
-}
-
-});
-
-});
-
-
-window.addEventListener("scroll",()=>{
-
-const scrollTop =
-document.documentElement.scrollTop;
-
-const height =
-document.documentElement.scrollHeight -
-document.documentElement.clientHeight;
-
-const scrolled =
-(scrollTop / height) * 100;
-
-document.getElementById("progress-bar")
-.style.width = scrolled + "%";
-
-});
+// =========================================================
+// BACK TO TOP BUTTON
+// =========================================================
 
 const topBtn =
-document.getElementById("topBtn");
+    document.getElementById("topBtn");
 
-window.addEventListener("scroll",()=>{
 
-if(window.scrollY > 300){
+window.addEventListener("scroll", () => {
 
-topBtn.style.display = "block";
+    if (!topBtn) return;
 
-}else{
 
-topBtn.style.display = "none";
+    if (window.scrollY > 300) {
+
+        topBtn.style.display =
+            "flex";
+
+    } else {
+
+        topBtn.style.display =
+            "none";
+
+    }
+
+});
+
+
+if (topBtn) {
+
+    topBtn.addEventListener("click", () => {
+
+        window.scrollTo({
+
+            top: 0,
+
+            behavior: "smooth"
+
+        });
+
+    });
 
 }
-
-});
-
-topBtn.onclick = ()=>{
-
-window.scrollTo({
-top:0,
-behavior:"smooth"
-});
-
-};
