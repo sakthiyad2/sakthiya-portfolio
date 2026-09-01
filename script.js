@@ -19,7 +19,7 @@ window.addEventListener("load", () => {
 
 
 // =========================================================
-// AOS
+// AOS ANIMATION
 // =========================================================
 
 if (typeof AOS !== "undefined") {
@@ -41,13 +41,16 @@ const toggle = document.getElementById("theme-toggle");
 
 
 // Load saved theme
+
 if (localStorage.getItem("theme") === "dark") {
 
     document.body.classList.add("dark");
 
     if (toggle) {
+
         toggle.innerHTML =
             '<i class="fa-solid fa-sun"></i>';
+
     }
 
 } else {
@@ -55,14 +58,17 @@ if (localStorage.getItem("theme") === "dark") {
     document.body.classList.remove("dark");
 
     if (toggle) {
+
         toggle.innerHTML =
             '<i class="fa-solid fa-moon"></i>';
+
     }
 
 }
 
 
 // Toggle theme
+
 if (toggle) {
 
     toggle.addEventListener("click", () => {
@@ -94,11 +100,13 @@ if (toggle) {
 // HAMBURGER MENU
 // =========================================================
 
-const hamburger = document.querySelector(".hamburger");
-const nav = document.querySelector(".nav-links");
+const hamburger =
+    document.querySelector(".hamburger");
+
+const nav =
+    document.querySelector(".nav-links");
 
 
-// Open / close menu
 if (hamburger && nav) {
 
     hamburger.addEventListener("click", (event) => {
@@ -115,7 +123,7 @@ if (hamburger && nav) {
 
 
 // =========================================================
-// CLOSE MOBILE MENU WHEN NAV LINK IS CLICKED
+// CLOSE MOBILE MENU WHEN LINK CLICKED
 // =========================================================
 
 document.querySelectorAll(".nav-links a").forEach(link => {
@@ -161,7 +169,7 @@ document.addEventListener("click", (event) => {
 
 
 // =========================================================
-// CLOSE MENU WHEN SCREEN BECOMES DESKTOP
+// RESET MENU ON DESKTOP
 // =========================================================
 
 window.addEventListener("resize", () => {
@@ -186,15 +194,20 @@ window.addEventListener("resize", () => {
 // =========================================================
 
 const text = [
+
     "Frontend Developer",
     "AI Student",
     "UI Designer",
     "Java Developer"
+
 ];
 
 let textIndex = 0;
+
 let charIndex = 0;
+
 let isDeleting = false;
+
 
 const typingElement =
     document.getElementById("typing");
@@ -207,12 +220,14 @@ function type() {
     const currentText =
         text[textIndex];
 
+
     if (!isDeleting) {
 
         typingElement.textContent =
             currentText.substring(0, charIndex);
 
         charIndex++;
+
 
         if (charIndex > currentText.length) {
 
@@ -221,6 +236,7 @@ function type() {
             setTimeout(type, 1200);
 
             return;
+
         }
 
     } else {
@@ -229,6 +245,7 @@ function type() {
             currentText.substring(0, charIndex);
 
         charIndex--;
+
 
         if (charIndex < 0) {
 
@@ -243,12 +260,14 @@ function type() {
 
     }
 
+
     setTimeout(
         type,
         isDeleting ? 70 : 120
     );
 
 }
+
 
 type();
 
@@ -508,7 +527,7 @@ const projects = {
 
 
 // =========================================================
-// CATEGORY BUTTONS
+// PROJECT CATEGORY BUTTONS
 // =========================================================
 
 const catDiv =
@@ -525,11 +544,13 @@ if (catDiv) {
         button.innerText =
             category.toUpperCase();
 
+
         button.addEventListener("click", () => {
 
             loadProjects(category);
 
         });
+
 
         catDiv.appendChild(button);
 
@@ -547,22 +568,31 @@ function loadProjects(category) {
     const container =
         document.getElementById("project-container");
 
+
     if (!container) return;
 
+
     container.innerHTML = "";
+
+
+    if (!projects[category]) return;
+
 
     projects[category].forEach((project, index) => {
 
         const div =
             document.createElement("div");
 
+
         div.className =
             "project glass";
+
 
         div.setAttribute(
             "data-aos",
             "zoom-in-up"
         );
+
 
         div.setAttribute(
             "data-aos-delay",
@@ -575,6 +605,7 @@ function loadProjects(category) {
             <img
                 src="${project.img}"
                 alt="${project.title}"
+                class="project-image"
             >
 
             <h3>
@@ -588,11 +619,29 @@ function loadProjects(category) {
         `;
 
 
-        div.addEventListener("click", () => {
+        // ONLY PROJECT IMAGE OPENS MODAL
 
-            openModal(project);
+        const image =
+            div.querySelector(".project-image");
 
-        });
+
+        if (image) {
+
+            image.addEventListener("click", (event) => {
+
+                event.stopPropagation();
+
+
+                openImageModal(
+                    project.img,
+                    project.title,
+                    "Project",
+                    project.link
+                );
+
+            });
+
+        }
 
 
         container.appendChild(div);
@@ -601,18 +650,23 @@ function loadProjects(category) {
 
 
     if (typeof AOS !== "undefined") {
+
         AOS.refresh();
+
     }
 
 }
 
 
-// Load default projects
+// =========================================================
+// LOAD DEFAULT PROJECT CATEGORY
+// =========================================================
+
 loadProjects("web");
 
 
 // =========================================================
-// CERTIFICATES
+// CERTIFICATE DATA
 // =========================================================
 
 const certificates = [
@@ -781,38 +835,50 @@ const certificates = [
 
 
 // =========================================================
-// LOAD CERTIFICATES
+// CERTIFICATE CONTAINER
 // =========================================================
 
 const certContainer =
     document.getElementById("certificate-container");
 
+
 const showBtn =
     document.getElementById("show-more-certificates");
 
+
 let visibleCertificates = 3;
 
+
+// =========================================================
+// LOAD CERTIFICATES
+// =========================================================
 
 function loadCertificates() {
 
     if (!certContainer) return;
 
+
     certContainer.innerHTML = "";
+
 
     certificates
         .slice(0, visibleCertificates)
         .forEach((certificate, index) => {
 
+
             const div =
                 document.createElement("div");
 
+
             div.className =
                 "cert glass";
+
 
             div.setAttribute(
                 "data-aos",
                 "flip-left"
             );
+
 
             div.setAttribute(
                 "data-aos-delay",
@@ -825,6 +891,7 @@ function loadCertificates() {
                 <img
                     src="${certificate.img}"
                     alt="${certificate.title}"
+                    class="certificate-image"
                 >
 
                 <h3>
@@ -834,11 +901,28 @@ function loadCertificates() {
             `;
 
 
-            div.addEventListener("click", () => {
+            // ONLY CERTIFICATE IMAGE OPENS MODAL
 
-                openCert(certificate.img);
+            const image =
+                div.querySelector(".certificate-image");
 
-            });
+
+            if (image) {
+
+                image.addEventListener("click", (event) => {
+
+                    event.stopPropagation();
+
+
+                    openImageModal(
+                        certificate.img,
+                        certificate.title,
+                        "Certificate"
+                    );
+
+                });
+
+            }
 
 
             certContainer.appendChild(div);
@@ -847,11 +931,17 @@ function loadCertificates() {
 
 
     if (typeof AOS !== "undefined") {
+
         AOS.refresh();
+
     }
 
 }
 
+
+// =========================================================
+// LOAD INITIAL CERTIFICATES
+// =========================================================
 
 loadCertificates();
 
@@ -867,7 +957,9 @@ if (showBtn) {
         visibleCertificates =
             certificates.length;
 
+
         loadCertificates();
+
 
         showBtn.style.display =
             "none";
@@ -878,47 +970,86 @@ if (showBtn) {
 
 
 // =========================================================
-// MODAL
+// IMAGE MODAL
 // =========================================================
 
-function openModal(project) {
+function openImageModal(
+    src,
+    title,
+    type = "Image",
+    link = "#"
+) {
 
     const modal =
         document.getElementById("modal");
 
+
     const content =
         document.getElementById("modal-content");
 
+
     if (!modal || !content) return;
+
+
+    let buttonHTML = "";
+
+
+    // -----------------------------------------------------
+    // VIEW PROJECT BUTTON
+    // ONLY FOR PROJECTS
+    // -----------------------------------------------------
+
+    if (
+        type === "Project" &&
+        link &&
+        link !== "#"
+    ) {
+
+        buttonHTML = `
+
+            <a
+                href="${link}"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="view-project-btn"
+            >
+
+                <i class="fa-brands fa-github"></i>
+
+                View Project
+
+            </a>
+
+        `;
+
+    }
+
+
+    content.innerHTML = `
+
+        <div class="modal-image-wrapper">
+
+            <img
+                src="${src}"
+                alt="${title}"
+                class="modal-image"
+            >
+
+            <h3 class="modal-image-title">
+                ${title}
+            </h3>
+
+            ${buttonHTML}
+
+        </div>
+
+    `;
 
 
     modal.classList.add("active");
 
 
-    content.innerHTML = `
-
-        <h2>
-            ${project.title}
-        </h2>
-
-        <br>
-
-        <p>
-            ${project.desc}
-        </p>
-
-        <br><br>
-
-        <a
-            href="${project.link}"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="btn"
-        >
-            Visit Project
-        </a>
-
-    `;
+    document.body.classList.add("modal-open");
 
 }
 
@@ -932,51 +1063,47 @@ function closeModal() {
     const modal =
         document.getElementById("modal");
 
-    if (modal) {
-        modal.classList.remove("active");
-    }
-
-}
-
-
-// =========================================================
-// OPEN CERTIFICATE
-// =========================================================
-
-function openCert(src) {
-
-    const modal =
-        document.getElementById("modal");
 
     const content =
         document.getElementById("modal-content");
 
-    if (!modal || !content) return;
+
+    if (modal) {
+
+        modal.classList.remove("active");
+
+    }
 
 
-    modal.classList.add("active");
+    if (content) {
+
+        content.innerHTML = "";
+
+    }
 
 
-    content.innerHTML = `
-
-        <img
-            src="${src}"
-            alt="Certificate"
-            style="
-                width:100%;
-                max-height:80vh;
-                object-fit:contain;
-                border-radius:15px;
-            "
-        >
-
-    `;
+    document.body.classList.remove("modal-open");
 
 }
 
 
 // =========================================================
-// CLOSE MODAL WHEN CLICKING OUTSIDE
+// ESC KEY CLOSE MODAL
+// =========================================================
+
+document.addEventListener("keydown", (event) => {
+
+    if (event.key === "Escape") {
+
+        closeModal();
+
+    }
+
+});
+
+
+// =========================================================
+// CLICK OUTSIDE MODAL TO CLOSE
 // =========================================================
 
 window.addEventListener("click", (event) => {
@@ -984,12 +1111,13 @@ window.addEventListener("click", (event) => {
     const modal =
         document.getElementById("modal");
 
+
     if (
         modal &&
         event.target === modal
     ) {
 
-        modal.classList.remove("active");
+        closeModal();
 
     }
 
@@ -1008,37 +1136,56 @@ if (typeof tsParticles !== "undefined") {
             enable: false
         },
 
+
         background: {
             color: "transparent"
         },
 
+
         fpsLimit: 60,
+
 
         particles: {
 
             number: {
+
                 value: 100,
 
                 density: {
+
                     enable: true,
+
                     area: 800
+
                 }
+
             },
+
 
             color: {
+
                 value: "#ffffff"
+
             },
 
+
             shape: {
+
                 type: "circle"
+
             },
+
 
             opacity: {
 
                 value: {
+
                     min: 0.2,
+
                     max: 0.8
+
                 },
+
 
                 animation: {
 
@@ -1054,14 +1201,19 @@ if (typeof tsParticles !== "undefined") {
 
             },
 
+
             size: {
 
                 value: {
+
                     min: 1,
+
                     max: 4
+
                 }
 
             },
+
 
             move: {
 
@@ -1075,11 +1227,15 @@ if (typeof tsParticles !== "undefined") {
 
                 straight: false,
 
+
                 outModes: {
+
                     default: "out"
+
                 }
 
             },
+
 
             links: {
 
@@ -1110,6 +1266,7 @@ if (typeof tsParticles !== "undefined") {
 
                 },
 
+
                 resize: true
 
             },
@@ -1120,6 +1277,7 @@ if (typeof tsParticles !== "undefined") {
                 grab: {
 
                     distance: 150,
+
 
                     links: {
 
@@ -1150,12 +1308,9 @@ window.addEventListener("scroll", () => {
     const navbar =
         document.querySelector(".navbar");
 
+
     if (!navbar) return;
 
-
-    // IMPORTANT:
-    // Do not force a dark background.
-    // CSS handles light/dark themes.
 
     if (window.scrollY > 50) {
 
@@ -1178,17 +1333,27 @@ const hero =
     document.querySelector(".hero");
 
 
-if (hero && window.innerWidth > 768) {
+if (
+    hero &&
+    window.innerWidth > 768
+) {
 
     window.addEventListener("mousemove", (event) => {
 
         const x =
-            (event.clientX /
-                window.innerWidth - 0.5) * 6;
+            (
+                event.clientX /
+                window.innerWidth -
+                0.5
+            ) * 6;
+
 
         const y =
-            (event.clientY /
-                window.innerHeight - 0.5) * 6;
+            (
+                event.clientY /
+                window.innerHeight -
+                0.5
+            ) * 6;
 
 
         hero.style.transform =
@@ -1199,7 +1364,10 @@ if (hero && window.innerWidth > 768) {
 }
 
 
-// Reset hero transform on mobile
+// =========================================================
+// RESET HERO TRANSFORM ON MOBILE
+// =========================================================
+
 window.addEventListener("resize", () => {
 
     if (
@@ -1222,6 +1390,7 @@ window.addEventListener("resize", () => {
 const sections =
     document.querySelectorAll("section");
 
+
 const navLinks =
     document.querySelectorAll(".nav-links a");
 
@@ -1235,6 +1404,7 @@ window.addEventListener("scroll", () => {
 
         const sectionTop =
             section.offsetTop;
+
 
         if (
             window.scrollY >=
@@ -1281,6 +1451,7 @@ window.addEventListener("scroll", () => {
 
     const scrollTop =
         document.documentElement.scrollTop;
+
 
     const height =
         document.documentElement.scrollHeight -
