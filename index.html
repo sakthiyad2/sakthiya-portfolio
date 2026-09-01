@@ -3,516 +3,756 @@
 
 <head>
 
-<meta charset="UTF-8">
+    <meta charset="UTF-8">
 
-<meta name="viewport"
-content="width=device-width, initial-scale=1.0">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
 
-<title>Sakthiya Portfolio</title>
+    <title>Sakthiya Portfolio</title>
 
-<!-- CSS -->
+    <!-- =========================
+         CSS
+    ========================== -->
 
-<link rel="stylesheet"
-href="style.css">
+    <link rel="stylesheet"
+        href="style.css">
 
-<!-- FONT AWESOME -->
 
-<link rel="stylesheet"
-href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+    <!-- =========================
+         FONT AWESOME
+    ========================== -->
 
-<!-- AOS -->
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
-<link
-href="https://unpkg.com/aos@2.3.4/dist/aos.css"
-rel="stylesheet">
 
-<!-- PARTICLES -->
+    <!-- =========================
+         AOS ANIMATION
+    ========================== -->
 
-<script src="https://cdn.jsdelivr.net/npm/tsparticles@2/tsparticles.bundle.min.js"></script>
+    <link rel="stylesheet"
+        href="https://unpkg.com/aos@2.3.4/dist/aos.css">
+
+
+    <!-- =========================
+         PARTICLES
+    ========================== -->
+
+    <script
+        src="https://cdn.jsdelivr.net/npm/tsparticles@2/tsparticles.bundle.min.js">
+    </script>
 
 </head>
 
+
 <body>
 
-<!-- LOADER -->
 
-<div id="loader">
+    <!-- =========================
+         LOADER
+    ========================== -->
 
-<div class="spinner"></div>
+    <div id="loader">
 
-</div>
+        <div class="spinner"></div>
 
-<!-- SCROLL PROGRESS -->
+    </div>
 
-<div id="progress-bar"></div>
 
-<!-- PARTICLES -->
+    <!-- =========================
+         SCROLL PROGRESS
+    ========================== -->
 
-<div id="particles"></div>
+    <div id="progress-bar"></div>
 
-<!-- NAVBAR -->
 
-<nav class="navbar glass">
+    <!-- =========================
+         PARTICLES BACKGROUND
+    ========================== -->
 
-<h2 class="logo">
-Sakthiya
-</h2>
+    <div id="particles"></div>
 
-<ul class="nav-links">
 
-<li>
-<a href="#home">Home</a>
-</li>
+    <!-- =========================
+         NAVBAR
+    ========================== -->
 
-<li>
-<a href="#about">About</a>
-</li>
+    <nav class="navbar glass">
 
-<li>
-<a href="#skills">Skills</a>
-</li>
+        <h2 class="logo">
+            Sakthiya
+        </h2>
 
-<li>
-<a href="#projects">Projects</a>
-</li>
 
-<li>
-<a href="#certificates">Certificates</a>
-</li>
+        <ul class="nav-links">
 
-<li>
-<a href="#stats">Stats</a>
-</li>
+            <li>
+                <a href="#home">
+                    Home
+                </a>
+            </li>
 
-<li>
-<a href="#contact">Contact</a>
-</li>
+            <li>
+                <a href="#about">
+                    About
+                </a>
+            </li>
 
-</ul>
+            <li>
+                <a href="#skills">
+                    Skills
+                </a>
+            </li>
 
-<div class="nav-right">
+            <li>
+                <a href="#projects">
+                    Projects
+                </a>
+            </li>
 
-<button id="theme-toggle">
+            <li>
+                <a href="#certificates">
+                    Certificates
+                </a>
+            </li>
 
-<i class="fa-solid fa-moon"></i>
+            <li>
+                <a href="#stats">
+                    Stats
+                </a>
+            </li>
 
-</button>
+            <li>
+                <a href="#contact">
+                    Contact
+                </a>
+            </li>
 
-<div class="hamburger">
+        </ul>
 
-<span></span>
-<span></span>
-<span></span>
 
-</div>
+        <div class="nav-right">
 
-</div>
+            <button
+                id="theme-toggle"
+                aria-label="Toggle theme">
 
-</nav>
+                <i class="fa-solid fa-moon"></i>
 
-<!-- HERO -->
+            </button>
 
-<section id="home"
-class="hero">
 
-<!-- HERO GLOW -->
+            <div class="hamburger">
 
-<div class="hero-glow"></div>
+                <span></span>
+                <span></span>
+                <span></span>
 
-<h1 data-aos="fade-up">
+            </div>
 
-Hi, I'm <span>Sakthiya</span>
+        </div>
 
-</h1>
+    </nav>
 
-<h2 id="typing"
-data-aos="fade-up"></h2>
 
-<p data-aos="fade-up">
 
-Frontend Developer & AI Student
+    <!-- =========================
+         HERO SECTION
+    ========================== -->
 
-</p>
+    <section
+        id="home"
+        class="hero">
 
-<!-- HERO TAGS -->
 
-<div class="hero-tags"
-data-aos="fade-up">
+        <!-- HERO GLOW -->
 
-<span>AI Student</span>
+        <div class="hero-glow"></div>
 
-<span>Frontend Developer</span>
 
-<span>Java Developer </span>
+        <h1 data-aos="fade-up">
 
-<span>Open to Internship</span>
+            Hi, I'm
+            <span>Sakthiya</span>
 
-</div>
+        </h1>
 
-<div class="hero-btns"
-data-aos="fade-up">
 
-<a href="#projects"
-class="btn">
+        <h2
+            id="typing"
+            data-aos="fade-up">
+        </h2>
 
-View Projects
 
-</a>
+        <p data-aos="fade-up">
 
-<a href="resume.pdf"
-download
-class="btn">
+            Frontend Developer & AI Student
 
-Download Resume
+        </p>
 
-</a>
 
-</div>
+        <!-- HERO TAGS -->
 
-</section>
+        <div
+            class="hero-tags"
+            data-aos="fade-up">
 
-<!-- ABOUT -->
+            <span>
+                AI Student
+            </span>
 
-<section id="about"
-class="section glass"
-data-aos="fade-right">
+            <span>
+                Frontend Developer
+            </span>
 
-<div class="about-container">
+            <span>
+                Java Developer
+            </span>
 
-<img src="profile.png"
-alt="profile">
+            <span>
+                Open to Internship
+            </span>
 
-<div>
+        </div>
 
-<h2>
-About Me
-</h2>
 
-<p>
+        <!-- HERO BUTTONS -->
 
-I am pursuing B.Tech Artificial Intelligence
-& Data Science at Prince Dr. K. Vasudevan
-College of Engineering and Technology.
+        <div
+            class="hero-btns"
+            data-aos="fade-up">
 
-I love frontend development,
-UI designing and AI projects.
+            <a
+                href="#projects"
+                class="btn">
 
-</p>
+                View Projects
 
-</div>
+            </a>
 
-</div>
 
-</section>
+            <a
+                href="resume.pdf"
+                download
+                class="btn">
 
-<!-- SKILLS -->
+                Download Resume
 
-<section id="skills"
-class="section">
+            </a>
 
-<h2 data-aos="fade-up">
+        </div>
 
-Skills
+    </section>
 
-</h2>
 
-<div class="grid">
 
-<div class="skill glass"
-data-aos="zoom-in">
+    <!-- =========================
+         ABOUT SECTION
+    ========================== -->
 
-<i class="fa-brands fa-html5"></i>
+    <section
+        id="about"
+        class="section glass"
+        data-aos="fade-right">
 
-<p>HTML</p>
 
-</div>
+        <div class="about-container">
 
-<div class="skill glass"
-data-aos="zoom-in">
 
-<i class="fa-brands fa-css3-alt"></i>
+            <img
+                src="profile.png"
+                alt="Sakthiya profile">
 
-<p>CSS</p>
 
-</div>
+            <div>
 
-<div class="skill glass"
-data-aos="zoom-in">
+                <h2>
+                    About Me
+                </h2>
 
-<i class="fa-brands fa-js"></i>
 
-<p>JavaScript</p>
+                <p>
 
-</div>
+                    I am pursuing B.Tech Artificial Intelligence
+                    &amp; Data Science at Prince Dr. K. Vasudevan
+                    College of Engineering and Technology.
 
-<div class="skill glass"
-data-aos="zoom-in">
+                    I love frontend development,
+                    UI designing and AI projects.
 
-<i class="fa-brands fa-python"></i>
+                </p>
 
-<p>Python</p>
+            </div>
 
-</div>
+        </div>
 
-<div class="skill glass"
-data-aos="zoom-in">
+    </section>
 
-<i class="fa-brands fa-java"></i>
 
-<p>Java</p>
 
-</div>
+    <!-- =========================
+         SKILLS SECTION
+    ========================== -->
 
-<div class="skill glass"
-data-aos="zoom-in">
+    <section
+        id="skills"
+        class="section">
 
-<i class="fa-solid fa-pen-nib"></i>
 
-<p>UI/UX Design</p>
+        <h2 data-aos="fade-up">
 
-</div>
+            Skills
 
-</div>
+        </h2>
 
-</section>
 
-<!-- PROJECTS -->
+        <div class="grid">
 
-<section id="projects"
-class="section">
 
-<h2 data-aos="fade-up">
+            <div
+                class="skill glass"
+                data-aos="zoom-in">
 
-Projects
+                <i class="fa-brands fa-html5"></i>
 
-</h2>
+                <p>
+                    HTML
+                </p>
 
-<div id="categories"></div>
+            </div>
 
-<div id="project-container"></div>
 
-</section>
+            <div
+                class="skill glass"
+                data-aos="zoom-in">
 
-<!-- CERTIFICATES -->
+                <i class="fa-brands fa-css3-alt"></i>
 
-<section id="certificates"
-class="section">
+                <p>
+                    CSS
+                </p>
 
-<h2 data-aos="fade-up">
+            </div>
 
-Certificates
 
-</h2>
+            <div
+                class="skill glass"
+                data-aos="zoom-in">
 
-<div id="certificate-container"
-class="grid"></div>
+                <i class="fa-brands fa-js"></i>
 
-<div class="show-btn-container">
+                <p>
+                    JavaScript
+                </p>
 
-<button id="show-more-certificates"
-class="btn">
+            </div>
 
-Show All Certificates
 
-</button>
+            <div
+                class="skill glass"
+                data-aos="zoom-in">
 
-</div>
+                <i class="fa-brands fa-python"></i>
 
-</section>
+                <p>
+                    Python
+                </p>
 
-<!-- STATS -->
+            </div>
 
-<section id="stats"
-class="section">
 
-<h2 data-aos="fade-up">
+            <div
+                class="skill glass"
+                data-aos="zoom-in">
 
-My Achievements
+                <i class="fa-brands fa-java"></i>
 
-</h2>
+                <p>
+                    Java
+                </p>
 
-<div class="grid">
+            </div>
 
-<div class="skill glass"
-data-aos="zoom-in">
 
-<h1>30+</h1>
+            <div
+                class="skill glass"
+                data-aos="zoom-in">
 
-<p>Certificates</p>
+                <i class="fa-solid fa-pen-nib"></i>
 
-</div>
+                <p>
+                    UI/UX Design
+                </p>
 
-<div class="skill glass"
-data-aos="zoom-in">
+            </div>
 
-<h1>25+</h1>
 
-<p>Projects</p>
+        </div>
 
-</div>
+    </section>
 
-</div>
 
-</section>
 
-<!-- CONTACT -->
+    <!-- =========================
+         PROJECTS SECTION
+    ========================== -->
 
-<section id="contact"
-class="section">
+    <section
+        id="projects"
+        class="section">
 
-<h2 data-aos="fade-up">
 
-Contact Me
+        <h2 data-aos="fade-up">
 
-</h2>
+            Projects
 
-<div class="contact-container glass">
+        </h2>
 
-<!-- LEFT -->
 
-<div>
+        <!-- PROJECT CATEGORIES -->
 
-<h3>
-Let's Connect
-</h3>
+        <div id="categories"></div>
 
-<p>
 
-Open for internships,
-freelance work and collaboration.
+        <!-- PROJECT CARDS -->
 
-</p>
+        <div id="project-container"></div>
 
-<a href="https://github.com/sakthiyad2"
-target="_blank">
+    </section>
 
-<i class="fa-brands fa-github"></i>
 
-GitHub
 
-</a>
+    <!-- =========================
+         CERTIFICATES SECTION
+    ========================== -->
 
-<br><br>
+    <section
+        id="certificates"
+        class="section">
 
-<a href="https://www.linkedin.com/in/sakthiya-d-83a5b3386/"
-target="_blank">
 
-<i class="fa-brands fa-linkedin"></i>
+        <h2 data-aos="fade-up">
 
-LinkedIn
+            Certificates
 
-</a>
+        </h2>
 
-<br><br>
 
-<a href="mailto:dsakthiya2@gmail.com">
+        <!-- CERTIFICATE CARDS -->
 
-<i class="fa-solid fa-envelope"></i>
+        <div
+            id="certificate-container"
+            class="grid">
 
-dsakthiya2@gmail.com
+        </div>
 
-</a>
 
-</div>
+        <!-- SHOW MORE BUTTON -->
 
-<!-- FORM -->
+        <div class="show-btn-container">
 
-<form
-action="https://formsubmit.co/dsakthiya2@gmail.com"
-method="POST">
+            <button
+                id="show-more-certificates"
+                class="btn">
 
-<input
-type="hidden"
-name="_captcha"
-value="false">
+                Show All Certificates
 
-<input
-type="hidden"
-name="_template"
-value="table">
+            </button>
 
-<input
-type="hidden"
-name="_subject"
-value="New Portfolio Message">
+        </div>
 
-<input
-type="text"
-name="name"
-placeholder="Your Name"
-required>
+    </section>
 
-<input
-type="email"
-name="email"
-placeholder="Your Email"
-required>
 
-<textarea
-name="message"
-placeholder="Your Message"
-required>
-</textarea>
 
-<button
-type="submit"
-class="btn">
+    <!-- =========================
+         STATS SECTION
+    ========================== -->
 
-Send Message
+    <section
+        id="stats"
+        class="section">
 
-</button>
 
-</form>
+        <h2 data-aos="fade-up">
 
-</div>
+            My Achievements
 
-</section>
+        </h2>
 
-<!-- MODAL -->
 
-<div id="modal"
-class="modal glass">
+        <div class="grid">
 
-<span onclick="closeModal()">
 
-×
+            <div
+                class="skill glass"
+                data-aos="zoom-in">
 
-</span>
+                <h1>
+                    30+
+                </h1>
 
-<div id="modal-content"></div>
+                <p>
+                    Certificates
+                </p>
 
-</div>
+            </div>
 
-<!-- BACK TO TOP -->
 
-<button id="topBtn">
+            <div
+                class="skill glass"
+                data-aos="zoom-in">
 
-<i class="fa-solid fa-arrow-up"></i>
+                <h1>
+                    25+
+                </h1>
 
-</button>
+                <p>
+                    Projects
+                </p>
 
-<!-- FOOTER -->
+            </div>
 
-<footer class="footer">
 
-<p>
+        </div>
 
-© 2026 Sakthiya |
-All Rights Reserved
+    </section>
 
-</p>
 
-</footer>
 
-<!-- AOS -->
+    <!-- =========================
+         CONTACT SECTION
+    ========================== -->
 
-<script
-src="https://unpkg.com/aos@2.3.4/dist/aos.js">
-</script>
+    <section
+        id="contact"
+        class="section">
 
-<!-- JS -->
 
-<script src="script.js"></script>
+        <h2 data-aos="fade-up">
+
+            Contact Me
+
+        </h2>
+
+
+        <div class="contact-container glass">
+
+
+            <!-- LEFT SIDE -->
+
+            <div>
+
+
+                <h3>
+                    Let's Connect
+                </h3>
+
+
+                <p>
+
+                    Open for internships,
+                    freelance work and collaboration.
+
+                </p>
+
+
+                <!-- GITHUB -->
+
+                <a
+                    href="https://github.com/sakthiyad2"
+                    target="_blank"
+                    rel="noopener noreferrer">
+
+                    <i class="fa-brands fa-github"></i>
+
+                    GitHub
+
+                </a>
+
+
+                <br>
+                <br>
+
+
+                <!-- LINKEDIN -->
+
+                <a
+                    href="https://www.linkedin.com/in/sakthiya-d-83a5b3386/"
+                    target="_blank"
+                    rel="noopener noreferrer">
+
+                    <i class="fa-brands fa-linkedin"></i>
+
+                    LinkedIn
+
+                </a>
+
+
+                <br>
+                <br>
+
+
+                <!-- EMAIL -->
+
+                <a
+                    href="mailto:dsakthiya2@gmail.com">
+
+                    <i class="fa-solid fa-envelope"></i>
+
+                    dsakthiya2@gmail.com
+
+                </a>
+
+
+            </div>
+
+
+
+            <!-- CONTACT FORM -->
+
+            <form
+                action="https://formsubmit.co/dsakthiya2@gmail.com"
+                method="POST">
+
+
+                <input
+                    type="hidden"
+                    name="_captcha"
+                    value="false">
+
+
+                <input
+                    type="hidden"
+                    name="_template"
+                    value="table">
+
+
+                <input
+                    type="hidden"
+                    name="_subject"
+                    value="New Portfolio Message">
+
+
+                <input
+                    type="text"
+                    name="name"
+                    placeholder="Your Name"
+                    required>
+
+
+                <input
+                    type="email"
+                    name="email"
+                    placeholder="Your Email"
+                    required>
+
+
+                <textarea
+                    name="message"
+                    placeholder="Your Message"
+                    required>
+                </textarea>
+
+
+                <button
+                    type="submit"
+                    class="btn">
+
+                    Send Message
+
+                </button>
+
+
+            </form>
+
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =========================
+         IMAGE / PROJECT MODAL
+    ========================== -->
+
+    <div
+        id="modal"
+        class="modal">
+
+
+        <!-- CLOSE BUTTON -->
+
+        <button
+            id="modal-close"
+            class="modal-close"
+            onclick="closeModal()"
+            aria-label="Close">
+
+            &times;
+
+        </button>
+
+
+        <!-- MODAL CONTENT -->
+
+        <div id="modal-content">
+
+        </div>
+
+
+    </div>
+
+
+
+    <!-- =========================
+         BACK TO TOP
+    ========================== -->
+
+    <button
+        id="topBtn"
+        aria-label="Back to top">
+
+        <i class="fa-solid fa-arrow-up"></i>
+
+    </button>
+
+
+
+    <!-- =========================
+         FOOTER
+    ========================== -->
+
+    <footer class="footer">
+
+        <p>
+
+            &copy; 2026 Sakthiya |
+            All Rights Reserved
+
+        </p>
+
+    </footer>
+
+
+
+    <!-- =========================
+         AOS SCRIPT
+    ========================== -->
+
+    <script
+        src="https://unpkg.com/aos@2.3.4/dist/aos.js">
+    </script>
+
+
+
+    <!-- =========================
+         PORTFOLIO JAVASCRIPT
+    ========================== -->
+
+    <script src="script.js"></script>
+
 
 </body>
 
