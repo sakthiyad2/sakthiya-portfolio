@@ -829,7 +829,12 @@ const certificates = [
     {
         title: "Type Writing (Senior)",
         img: "type2.jpeg"
-    }
+    },
+
+    {
+        title: "Element of AI",
+        img: "Element of AI.jpg"
+    }         
 
 ];
 
