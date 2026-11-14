@@ -832,9 +832,9 @@ const certificates = [
     },
 
     {
-        title: "Elements of AI",
-        img: "ElementsofAI.jpg"
-    }         
+    title: "Elements of AI",
+    img: "https://raw.githubusercontent.com/sakthiyad2/sakthiya-portfolio/main/ElementsofAI.jpg"
+}        
 
 ];
 
