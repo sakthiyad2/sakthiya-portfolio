@@ -832,8 +832,8 @@ const certificates = [
     },
 
     {
-        title: "Element of AI",
-        img: "Element of AI.jpg"
+        title: "Elements of AI",
+        img: "Elements of AI.jpg"
     }         
 
 ];
